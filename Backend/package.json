@@ -4,7 +4,9 @@
   "description": "Backend for the quac APP (order Delivery App for Delivery agent)",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon ./server.js",
+    "start": "node ./server.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,8 @@
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }

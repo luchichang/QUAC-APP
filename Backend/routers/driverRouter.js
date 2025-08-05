@@ -2,6 +2,9 @@ const express = require('express');
 
 const driverRouter = express.Router();
 
-driverRouter.get('/getDriverDetails',(req,res)=> res.json({success: 'ok'}));
+const {getDriverInfo, putDriverRatingAndTip} = require('../controllers/driverController');
+
+driverRouter.get('/getDriverDetails/:driver_id', getDriverInfo);
+driverRouter.put('/putDriverRatingAndTip', putDriverRatingAndTip)
 
 module.exports = {driverRouter};
