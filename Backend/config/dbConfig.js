@@ -18,9 +18,9 @@ pool.connect((err, client, release) => {
     if(err){
         console.error('ERR: Failed connecting to the Postgresql', err.stack);
     }else {
-        console.log('INFO: successfully connected to the postgrsql',process.env.DB_PORT);
+        console.log('INFO: successfully connected to the postgrsql DB on port,',process.env.DB_PORT);
         release();
     }
 })
 
-module.exports = pool;
+module.exports = {pool};
