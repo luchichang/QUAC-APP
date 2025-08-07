@@ -1,0 +1,97 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.9 (Ubuntu 16.9-0ubuntu0.24.04.1)
+-- Dumped by pg_dump version 16.9 (Ubuntu 16.9-0ubuntu0.24.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Data for Name: drivers; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.drivers (driver_id, driver_name, driver_mobile, driver_rating, earned_tip) FROM stdin;
+drv-1	Manish	9025688114	0.0	0.00
+drv-2	Arun	8560515877	0.0	0.00
+\.
+
+
+--
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.orders (order_id, order_name, order_price, order_description) FROM stdin;
+ord-1	Zero to One Book	220.00	book about notes on how to build startup
+ord-2	Dumbell	467.00	Pair of Dumbels for home Workout
+ord-3	yoga mat	370.00	An un-doubted friend for your yoga sessions
+ord-4	Rubix Cube	187.00	A Mental Puzzle
+ord-5	Sun Glass	873.00	Move In Style
+ord-6	Mobile Phone	5678.00	Be Smart With One Plus Nod
+ord-7	Drilling Machine	2456.00	Handy Man
+ord-8	Shoes	961.00	For Tough Man
+ord-9	Ladder	2873.00	Climb to the sky with asylm ladder
+ord-10	Monitor	3870.00	Multi purpose LED Monitor
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (user_id, user_name, user_address, user_mobile, user_alt_mobile) FROM stdin;
+usr-1	RAM	{}	9786598414	9876541234
+usr-2	Madhesh	{}	9150560262	6383687412
+usr-3	Arjun	{}	7456231324	9239876512
+usr-4	Quincy	{}	9360616877	9150574426
+usr-5	Tejas	{}	8436755536	6806165431
+usr-6	Jayanthi	{}	9840414632	7012081405
+usr-7	Janany	{}	7432190764	6874187010
+usr-8	Gowtham	{}	7012081542	9442691324
+usr-9	Krishna	{}	6548962183	6331289741
+usr-10	Raavan	{}	8864188923	9021497896
+\.
+
+
+--
+-- Data for Name: status; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.status (user_id, order_id, driver_id, order_status) FROM stdin;
+\.
+
+
+--
+-- Name: driver_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.driver_seq', 2, true);
+
+
+--
+-- Name: order_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.order_seq', 10, true);
+
+
+--
+-- Name: user_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.user_seq', 10, true);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
