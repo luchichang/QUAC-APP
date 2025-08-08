@@ -3,7 +3,7 @@ const { pool } = require("../config/dbConfig");
 
 // sends all the order details
 const getAllOrders = async (req, res) => {
-  try { 
+  try {
     query = `SELECT * FROM public."orders";`;
     const { rows: orders } = await pool.query(query);
     // console.log(result.rows.length);
@@ -25,16 +25,32 @@ const getOrderById = async (req, res) => {
   try {
     const query = `SELECT * FROM public."orders" WHERE order_id = $1`;
     const params = [order_id];
-    const result = await pool.query(query, params);
-    console.log("getOrderById result", result);
+    const {
+      rows: [order],
+    } = await pool.query(query, params);
+    // console.log("getOrderById result", result);
 
-    if (result.rows.length === 0) {
-      res.status(202).json({ msg: "no order found" });
+    if (!order) {
+      return res.status(202).json({ msg: "no order found" });
     }
+    const ordQuery = `SELECT user_id FROM public."status" WHERE order_id = $1;`;
+
+    const {
+      rows: [ {user_id} ],
+    } = await pool.query(ordQuery, params);
+    console.log('user id',user_id);
+
+    const usrQuery = `SELECT * FROM public."users" WHERE user_id=$1`;
+
+    const {
+      rows: [user],
+    } = await pool.query(usrQuery, [user_id]);
+    console.log("user",user);
 
     res.json({
       success: true,
-      order: result.rows[0],
+      order: {...order},
+      user: {...user},
     });
   } catch (err) {
     res.status(500).json({ msg: "Internal Server Error", err: err.message });
