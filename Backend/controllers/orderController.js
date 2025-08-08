@@ -3,7 +3,7 @@ const { pool } = require("../config/dbConfig");
 
 // sends all the order details
 const getAllOrders = async (req, res) => {
-  try {
+  try { 
     query = `SELECT * FROM public."orders";`;
     const { rows: orders } = await pool.query(query);
     // console.log(result.rows.length);
