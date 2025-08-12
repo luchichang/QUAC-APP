@@ -8,7 +8,8 @@ const getDriverInfo = async (req, res) => {
 
     const status_result = await pool.query(
       `SELECT COUNT(*) AS total_order, COUNT(*) FILTER (WHERE order_status = 'completed') 
-      AS completed_orders FROM public."status" WHERE driver_id = $1;`, [driver_id]
+      AS completed_orders FROM public."status" WHERE driver_id = $1;`,
+      [driver_id]
     );
     console.log("Result", status_result);
 
@@ -80,4 +81,16 @@ const putDriverRatingAndTip = async (req, res) => {
   }
 };
 
-module.exports = { getDriverInfo, putDriverRatingAndTip };
+const singleOrderRatingAndTip = async (req, res) => {
+  const order_id = req.params;
+  try {
+    // const query = ``
+  } catch (err) {
+    res.status(500).json({ msg: "Internal Server Error.", err: err.message });
+  }
+};
+module.exports = {
+  getDriverInfo,
+  putDriverRatingAndTip,
+  singleOrderRatingAndTip,
+};
