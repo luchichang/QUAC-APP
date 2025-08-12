@@ -59,7 +59,18 @@ const getOrderById = async (req, res) => {
 
 // controller returns all the orders location
 const retriveOrdersLocation = async (req, res) => {
-  res.json({ success: true });
+  try{
+    const query = `SELECT s.order_id, u.user_address -> 'latitude' AS Latitude,
+      u.user_address-> 'longitude' AS Longitude FROM public."users" AS u
+      JOIN public."status" AS s ON u.user_id = s.user_id`;
+    const {rows: locCoordinates} = await pool.query(query);
+
+    // console.log(result);
+    res.json({success: true, locationCoordinates: locCoordinates});
+  }catch(err){
+    res.status(500).json({msg: "Internal Server Error.", err: err.message});
+  }
+  // res.json({ success: true });
 };
 
 module.exports = { getAllOrders, getOrderById, retriveOrdersLocation };
